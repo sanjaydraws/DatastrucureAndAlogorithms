@@ -1,0 +1,8 @@
+// Recursion is function which a function calls itself directly or indirectly 
+
+int fun ()
+{
+    ...
+    fun();
+}
+
