@@ -6,3 +6,7 @@ int fun ()
     fun();
 }
 
+
+for every function n will be created  
+if doesn't take base condition for recursion , memory will decrese in -> stack overflow
+
