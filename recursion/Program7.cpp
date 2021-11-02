@@ -25,7 +25,18 @@ int fib1(int n){
 		}
         return b;
 }
+int fib3(int N) 
+{
+	int arr[2];
+	
+	arr[0] = 0;
+    arr[1] = 1;
 
+    for (int i = 2; i <= N; i++)
+	   arr[i%2] = arr[0] + arr[1];
+
+    return arr[N%2];
+}
 int main(){
     int a = 0, b =1, n=7;
     printf("num = %d\n",fib2(n));
