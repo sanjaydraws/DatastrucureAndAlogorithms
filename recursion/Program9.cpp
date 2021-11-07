@@ -1,6 +1,6 @@
 #include<stdio.h>
 #include<vector> 
-
+#include<iostream>
 #include<string> 
 using namespace std;
 
@@ -12,7 +12,7 @@ public:
 		}
 		swap(str[l++], str[r--]);                            
 		rev(str, l, r);
-	}
+    }
 	void reverseString(vector<char>& s) {
 		rev(s, 0, s.size() - 1);
 	}
