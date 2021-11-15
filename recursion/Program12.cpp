@@ -2,6 +2,7 @@
 #include<String>
 #include<stdio.h>
 
+// t.c  O(2^n -1) = O(2^n)
 void towerOfHanoi(int n, int A, int B, int C){
     if(n >0)
     {
