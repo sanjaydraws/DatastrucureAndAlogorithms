@@ -1,0 +1,7 @@
+
+Compile Your C++ Program:
+run cpp program
+g++ -o Program1 Program1.cpp
+
+Run Your Compiled Program: Once the compilation is successful, you can run your program by typing:
+./myprogram
