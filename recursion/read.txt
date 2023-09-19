@@ -1,7 +1,15 @@
 
 Compile Your C++ Program:
-run cpp program
 g++ -o Program1 Program1.cpp
 
 Run Your Compiled Program: Once the compilation is successful, you can run your program by typing:
 ./myprogram
+
+
+How to run kotlin program :
+compile kotlin program :--
+kotlinc Program1.kt -include-runtime -d  Program1.jar
+
+run kotlin program-:
+java -jar Program1.jar
+
