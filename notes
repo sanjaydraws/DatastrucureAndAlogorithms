@@ -1,0 +1,57 @@
+Time Complexity or space complexity :
+
+
+Time Complexity : Amount of time taken by alogrithm to run as function of length input 
+
+
+Space Complexity: Amount of Space taken by an algorithm to run as a function of length of input 
+ex: lenght of input increase space also increase 
+int a = 5; // O(1)
+arry[5] -> O(1)
+int *a = new int[N] //O(N)
+int *b = new Int[N2] // O(N^2)
+
+Unit to represent Complexity 
+1. Big O : Upper bound
+2. Theta 0: Average Bond 
+3. Omega Ω : Lower bond 
+
+
+Big O:Complexities
+
+1. Constant time: O(1)
+ex int a = 5; // doesn't depend on n 
+2. Linear time: O(n): n increase time increase
+ex: for(i =0;i<N;i++){
+
+}
+3. Logarithmic time: O(logN):
+
+4. Quadratic time: O(N^2):
+for(i =0;i<N;i++){
+    for(j =0;j<N;j++){
+
+    }
+}
+5. Cubic time: O(N^3) - three level testing
+for(i-> n){
+    for(j->n){
+        for(k->n){
+
+        }
+    }
+}
+
+ex find complexity if function taken  these time 
+f(n) = 2n^2 + 3n^2 => o(2n^2) = O(n^2)
+4n^4 + 3n^3 = O(n^4)
+N^2 + logN = O(n^2)
+200 => O(200)=>O(1) 
+f(N/4) = O(N/4) = O(N)
+
+
+// incresing complexity 
+O(1),O(log N), O(√N), O(N), O(n log n), O(n^2), O(n^3),O(2^n), O(N!), O(N^n)
+(least complexity )                                                        (Most Complexity)
+
+// function call by value & call by reference 
