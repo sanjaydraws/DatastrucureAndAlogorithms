@@ -1,10 +1,10 @@
 
+//// count 1 and zero in an array 
 
 #include<limits.h>
 #include <iostream>
 using namespace std;
 
-// count 1 and zero in an array 
 void countZeroOne(int arr[], int size) {
   int zeroCount = 0;
   int oneCount = 0;
