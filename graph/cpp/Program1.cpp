@@ -6,6 +6,8 @@
 
 
 //1. By Adjaceany Matrix
+// space comp : (O(n2)) //Avg case // because created 2d array
+// O(v2) : AC
 #include <iostream>
 #include<vector>
 using namespace std;
