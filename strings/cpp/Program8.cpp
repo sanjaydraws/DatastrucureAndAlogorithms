@@ -1,7 +1,4 @@
 // https://leetcode.com/problems/palindromic-substrings/
-
-
-
 /**
 
 Input: s = "aaa"
