@@ -100,6 +100,7 @@ int main() {
   cout << "Printing BFS traversal" << std::endl;
   unordered_map<int,bool> visited1;
   //   g1.bfs(0);
+  //handle disconnected graph
   for(int i = 0; i<n;i++){
       if(!visited1[i]){
           g1.bfs(i, visited1);
