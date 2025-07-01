@@ -38,6 +38,8 @@ Input: s = "paper", t = "title"
 
 Output: true
 */
+// Time Complexity:O(n) 
+// Space Complexity:O(1)
 #include <iostream>
 #include <unordered_map>
 using namespace std;
