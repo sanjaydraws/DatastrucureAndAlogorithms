@@ -1,4 +1,7 @@
+//53. Maximum Subarray
+// Medium
 // print max Sum of subarray + print subarray
+// https://leetcode.com/problems/maximum-subarray/description/
 
 #include <iostream>
 #include <vector>

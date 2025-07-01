@@ -1,8 +1,5 @@
 // Find the length of the longest subarray with sum ≤ k
 
-
-
-
 #include <iostream>
 #include <vector>
 #include <algorithm>
