@@ -15,7 +15,6 @@ bool isAnagramArray(string s, string t) {
     // Create a count array to store frequency of each letter (a-z)
     int count[26] = {0};
 
-    // Traverse both strings simultaneously
     for (int i = 0; i < s.length(); i++) {
         // Increment count for character in s
         // Mapping: 'a' → 0, 'b' → 1, ..., 'z' → 25
