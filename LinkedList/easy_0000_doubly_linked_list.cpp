@@ -123,6 +123,23 @@ public:
             delete temp;  // Delete node to prevent memory leak
         }
     }
+    // Reverse the doubly linked list
+    void reverse() {
+          Node* current = head;
+          Node* temp = nullptr;
+              // Traverse through the list and swap prev and next pointers
+         while (current != nullptr) {
+            temp = current->prev;
+            current->prev = current->next;
+            current->next = temp;
+            current = current->prev;  // Move to next node (was previous before swap)
+        }
+         // Swap head and tail
+        if (temp != nullptr) {
+            head = temp->prev;
+        }
+    }
+
 };
 
 // Main function to demonstrate list operations
@@ -144,6 +161,12 @@ int main() {
     list.deleteNode(40);    // Delete tail
     cout << "After deleting 40:\n";
     list.printForward();    // List: 10 <-> 30
+
+    
+    list.reverse();         // Reverse the list
+    cout << "After reversing:\n";
+    list.printForward();    // Should print: 30 <-> 10 <-> NULL
+
 
     return 0;
 }
