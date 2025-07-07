@@ -15,6 +15,8 @@ struct ListNode {
 
 class Solution {
 public:
+    // Time Complexity: O(N)
+// Space: Constant → O(1)
     ListNode *detectCycle(ListNode *head) {
         ListNode* slow = head;
         ListNode* fast = head;
