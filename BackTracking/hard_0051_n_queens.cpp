@@ -57,7 +57,8 @@ public:
 
 
 // Time Complexity: O(n!) 
-//   → Worst-case for backtracking trying all column permutations per row
+// - Try placing a queen in every column per row
+// - Row 0 → n options, Row 1 → n-1 options, ..., → total = n!
 
 // Space Complexity: O(n^2 + n)
 //   → O(n^2) to store all board states in results
