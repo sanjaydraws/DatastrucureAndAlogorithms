@@ -1,38 +1,52 @@
-//https://leetcode.com/problems/burst-balloons/description/
-// 312. Burst Balloons
+//  https://leetcode.com/problems/burst-balloons/
+//  312. Burst Balloons
+
+#include <iostream>
+#include <vector>
+#include <algorithm>
+using namespace std;
 
 class Solution {
 public:
+   //  Approach: Interval DP
+   // ⏱️ Time Complexity: O(n^3)
+   // 💾 Space Complexity: O(n^2)
+
     int maxCoins(vector<int>& nums) {
         int n = nums.size();
 
-        // Step 1: Pad the nums with 1 at both ends
-        // Example: nums = [3,1,5] → arr = [1,3,1,5,1]
+        // Step 1: Add 1 at both ends → arr = [1, nums..., 1]
         vector<int> arr(n + 2, 1);
         for (int i = 0; i < n; i++) {
             arr[i + 1] = nums[i];
         }
 
-        // Step 2: Initialize a 2D DP table
-        // dp[i][j] = max coins from bursting balloons between i and j (exclusive)
+        // Step 2: Create DP table
         vector<vector<int>> dp(n + 2, vector<int>(n + 2, 0));
 
-        // Step 3: Fill DP table by increasing interval lengths
-        // len = size of the current window
+        // Step 3: Fill DP table from shorter intervals to longer
         for (int len = 2; len <= n + 1; len++) {
             for (int left = 0; left <= n + 1 - len; left++) {
                 int right = left + len;
 
-                // Try every balloon k between left and right as the last to burst
+                // Try each k as the last balloon to burst in (left, right)
                 for (int k = left + 1; k < right; k++) {
-                    int coins = arr[left] * arr[k] * arr[right];  // Coins from bursting k last
+                    int coins = arr[left] * arr[k] * arr[right];
                     dp[left][right] = max(dp[left][right],
                                           dp[left][k] + coins + dp[k][right]);
                 }
             }
         }
 
-        // Final result is bursting all balloons between index 0 and n+1
+        // Final result: burst everything between index 0 and n+1
         return dp[0][n + 1];
     }
 };
+
+int main() {
+    vector<int> nums = {3, 1, 5, 8};
+    Solution sol;
+    int result = sol.maxCoins(nums);
+    cout << "Maximum coins collected: " << result << endl;  // Output: 167
+    return 0;
+}
