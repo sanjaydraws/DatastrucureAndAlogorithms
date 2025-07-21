@@ -16,14 +16,14 @@
     📤 Output:
       - Maximum rectangular area on the grid which is not protected by any tower
 
-    💡 Approach:
+     Approach:
       - Extract all tower x and y coordinates
       - Sort them to calculate the maximum gap between adjacent towers
       - Consider edges of the grid as well
       - Final answer = max horizontal gap × max vertical gap
 
-    ✅ Time Complexity: O(n log n)  // due to sorting
-    ✅ Space Complexity: O(n)      // storing tower coordinates
+     Time Complexity: O(n log n)  // due to sorting
+     Space Complexity: O(n)      // storing tower coordinates
 */
 
 #include <iostream>
