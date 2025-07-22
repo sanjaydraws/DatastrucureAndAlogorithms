@@ -1,6 +1,7 @@
 // 56. Merge Intervals
 //https://leetcode.com/problems/merge-intervals/description/
-
+//Time: O(N log N) for sorting + O(N) for traversal → O(N log N)
+// Space: O(N) for the result vector
 #include <bits/stdc++.h>
 using namespace std;
 
