@@ -1,4 +1,5 @@
 #include<iostream>
+#include<queue>
 using namespace std;
 
 // Binary Search Tree Node
@@ -29,7 +30,7 @@ public:
             node->left = insert(node->left, val);
         else if (val > node->val)
             node->right = insert(node->right, val);
-        
+
         return node;
     }
 
@@ -105,6 +106,38 @@ public:
 
         return node;
     }
+    TreeNode* bstFromInorderHelper(int inorder[], int s, int e){
+        if(s > e) return nullptr;
+        int mid = (s + e) / 2;
+        int element = inorder[mid];
+        TreeNode* root = new TreeNode(element);
+        root->left = bstFromInorderHelper(inorder, s, mid -1);
+        root->right = bstFromInorderHelper(inorder, mid + 1, e);
+        return  root;
+    }
+    void bstFromInorder(int inorder[], int s, int e){
+         root = bstFromInorderHelper(inorder, s, e);
+    }
+
+    // Print level order traversal (line by line using null marker)
+    void levelOrderTraversal(TreeNode* root){
+        if(!root) return;
+        queue<TreeNode*> q;
+        q.push(root);
+        q.push(nullptr); // null marker for new level
+        while(!q.empty()){
+          TreeNode* node = q.front();
+          q.pop();
+          if(node == nullptr){
+            cout<<endl;
+            if(!q.empty()) q.push(nullptr);
+          }else{
+            cout<<node->val<<" ";
+            if(node->left) q.push(node->left);
+            if(node->right) q.push(node->right);
+          }
+        }
+    }
 };
 
 int main() {
@@ -134,6 +167,12 @@ int main() {
     cout << "Inorder after delete: ";
     tree.inorder(tree.root);
     cout << endl;
+
+    int inorder[] = {1,2,3,4,5,6,7};
+    tree.bstFromInorder(inorder,0,6);
+    cout << endl;
+    cout<<"inorder of bst from inorder:\n";
+    tree.levelOrderTraversal(tree.root);
 
     return 0;
 }
