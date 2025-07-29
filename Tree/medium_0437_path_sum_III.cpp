@@ -37,35 +37,31 @@ private:
 
 
 // Approach 2: Prefix Sum + Backtracking
-
-class PrefixSum {
+class Solution {
 public:
-    int pathSum(TreeNode* root, int targetSum) {
-        unordered_map<long long, int> prefix;
-        prefix[0] = 1; // Base case: prefix sum zero
-        count = 0;
-        dfs(root, 0, targetSum, prefix);
-        return count;
-    }
-
-private:
-    int count;
+    int count = 0;
 
     void dfs(TreeNode* node, long long currSum, int targetSum, unordered_map<long long, int>& prefix) {
         if (!node) return;
 
         currSum += node->val;
-
         // Check if there's a prefix that gives us targetSum
-        if (prefix.count(currSum - targetSum))
+
+        if (prefix.count(currSum - targetSum)) {
             count += prefix[currSum - targetSum];
+        }
 
         prefix[currSum]++;
-
         dfs(node->left, currSum, targetSum, prefix);
         dfs(node->right, currSum, targetSum, prefix);
-
         prefix[currSum]--; // Backtrack
+    }
+
+    int pathSum(TreeNode* root, int targetSum) {
+        unordered_map<long long, int> prefix;
+        prefix[0] = 1; // Base case: prefix sum zero
+        dfs(root, 0, targetSum, prefix);
+        return count;
     }
 };
 
