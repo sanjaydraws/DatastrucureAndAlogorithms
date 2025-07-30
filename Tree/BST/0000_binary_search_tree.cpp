@@ -138,7 +138,55 @@ public:
           }
         }
     }
+
+    // Convert BST to DLL
+    // T.C: O(n) | S.C: O(n)
+    void convertBSTtoDLL(TreeNode* root,TreeNode* &head){
+      if(root == nullptr) return ;
+      convertBSTtoDLL(root->right, head);
+      root->right = head;
+      if(head != nullptr) 
+         head->left = root;
+      head = root;
+      convertBSTtoDLL(root->left, head);
+    } 
+
+    // T.C: O(n), S.C: O(log n) due to recursion stack
+   TreeNode* sortedDLLToBST(TreeNode*& head, int n){
+     if(n <=0) return nullptr;
+     TreeNode* left = sortedDLLToBST(head, n/2);
+     TreeNode* root = head;
+     root->left = left;
+     head = head->right;
+     root->right = sortedDLLToBST(head, n - n/2 -1);
+     return root;
+   }
+
+    void printDLL(TreeNode* head) {
+        TreeNode* curr = head;
+        cout << "NULL ⇨ ";  // Start of DLL
+        while (curr != nullptr) {
+            cout << curr->val;
+            if (curr->right != nullptr)
+                cout << " ⇄ ";
+            else
+                cout << " ⇨ NULL";  // End of DLL
+            curr = curr->right;
+        }
+        cout << endl;
+    }
+
+
+
 };
+int countDLL(TreeNode* head) {
+    int count = 0;
+    while (head) {
+        count++;
+        head = head->right;
+    }
+    return count;
+}
 
 int main() {
     BST tree;
@@ -174,5 +222,17 @@ int main() {
     cout<<"inorder of bst from inorder:\n";
     tree.levelOrderTraversal(tree.root);
 
+    TreeNode* head = nullptr;
+    tree.convertBSTtoDLL(tree.root, head);
+    tree.printDLL(head);  //NULL ⇨ 1 ⇄ 2 ⇄ 3 ⇄ 4 ⇄ 5 ⇄ 6 ⇄ 7 ⇨ NULL
+
+
+     // call sortedDLLToBST
+    int n = countDLL(head);
+    TreeNode* bstRoot = tree.sortedDLLToBST(head, n);
+    // Print BST to confirm (e.g., level order)
+    cout<<endl;
+    cout<<"DLL TO BST:\n";
+    tree.levelOrderTraversal(bstRoot);
     return 0;
 }

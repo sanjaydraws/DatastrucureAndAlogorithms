@@ -1,6 +1,9 @@
+// 230. Kth Smallest Element in a BST
+// https://leetcode.com/problems/kth-smallest-element-in-a-bst/description/
+
 class Solution {
 public:
-    // ✅ 1. Recursive Inorder Traversal without external counter
+    // 1. Recursive Inorder Traversal without external counter
     // T.C = O(H + k), where H = height of tree, worst O(N)
     // S.C = O(H) due to recursion stack
     int kthSmallestRecursive(TreeNode* root, int k) {
@@ -22,7 +25,7 @@ public:
         return inorder(node->right, k);
     }
 
-    // ✅ 2. Morris Inorder Traversal (No recursion or stack)
+    //  2. Morris Inorder Traversal (No recursion or stack)
     // T.C = O(N), S.C = O(1) — space efficient
     int kthSmallestMorris(TreeNode* root, int k) {
         TreeNode* curr = root;
