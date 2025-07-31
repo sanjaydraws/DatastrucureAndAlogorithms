@@ -27,3 +27,8 @@ public:
         return build(preorder, index, INT_MIN, INT_MAX);
     }
 };
+/*
+Time Complexity: O(n)
+
+Space Complexity: O(h) → O(n) worst case, O(log n) average case
+*/
