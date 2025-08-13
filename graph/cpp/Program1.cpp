@@ -6,36 +6,50 @@
 
 
 //1. By Adjaceany Matrix
-// space comp : (O(n2)) //Avg case // because created 2d array
-// O(v2) : AC
+// Measure	Complexity
+// Time Complexity	O(n^2)
+// Space Complexity	O(n^2)
 #include <iostream>
-#include<vector>
+#include <vector>
 using namespace std;
 
 int main() {
-  int n;
-  cout<<"Enter the number of nodes"<<endl;
-  cin>>n;
- 
-  vector<vector<int>> adj(n,vector<int>(n,0));
-  int e;
-  cout<<"Enter the number of edges"<<endl;
-  cin>>e;
-  for(int i = 0;i<e;i++){
-    int u,v; 
-    cin >> u >> v;
-    // mark 1 in adjaceancy matrix
-    adj[u][v] = 1;
-  }
-    // printing
-    for(int i = 0;i<n;i++){
-      for(int j = 0;j<n;j++){
-        cout<<adj[i][j]<<" ";
-      }
-      cout<<endl;
+    int isUndirected = 1;
+    int n;
+    cout << "Enter the number of nodes: ";
+    cin >> n;
+
+    // Creating an n x n matrix initialized with 0
+    vector<vector<int>> adj(n, vector<int>(n, 0));
+
+    int e;
+    cout << "Enter the number of edges: ";
+    cin >> e;
+
+    cout << "Enter the edges (u v):" << endl;
+    for (int i = 0; i < e; i++) {
+        int u, v;
+        cin >> u >> v;
+
+        // Mark 1 for the given edge
+        adj[u][v] = 1;
+
+        // If undirected, also mark reverse
+        if (isUndirected) {
+            adj[v][u] = 1;
+        }
     }
-  
-  return 0;
+
+    // Printing the adjacency matrix
+    cout << "\nAdjacency Matrix:\n";
+    for (int i = 0; i < n; i++) {
+        for (int j = 0; j < n; j++) {
+            cout << adj[i][j] << " ";
+        }
+        cout << endl;
+    }
+
+    return 0;
 }
 
 

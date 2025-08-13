@@ -1,0 +1,24 @@
+ Prefix Sum
+T.C: Build – O(n), Query – O(1)
+
+✅ Fenwick Tree (Binary Indexed Tree)
+T.C: Build – O(n log n), Query/Update – O(log n)
+
+✅ Segment Tree
+T.C: Build – O(n), Query/Update – O(log n)
+
+✅ 2D Prefix Sum
+T.C: Build – O(n²), Query – O(1)
+
+
+| Technique          | Build Time | Query Time | Update Time | Use Case                            |
+|                    |            | (l to r)   |             |                                     |
+| ------------------ | ---------- | ---------- | ----------- | ----------------------------------- |
+| Prefix Sum         | O(n)       | O(1)       | ❌ (static)  | Simple, static arrays               |
+| Fenwick Tree (BIT) | O(n log n) | O(log n)   | O(log n)    | Dynamic, prefix sums                |
+| Segment Tree       | O(n)       | O(log n)   | O(log n)    | Range queries (sum, min, max, etc.) |
+| 2D Prefix Sum      | O(n²)      | O(1)       | ❌ (static)  | 2D arrays, image processing, etc.   |
+
+
+
+===============================================================================
