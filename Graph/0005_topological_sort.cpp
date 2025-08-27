@@ -36,42 +36,49 @@ public:
     }
 
     //BFS (Kahn's Algorithm) 
-    vector<int> topoSortBFS(int V, vector<int> adj[]) {
+     vector<int> topoSortBFS(int V, vector<int> adj[]) {
         vector<int> indegree(V, 0);
 
-        // Step 1: Calculate indegree
-        for (int i = 0; i < V; i++) {
-            for (int neigh : adj[i]) {
-                indegree[neigh]++;
-            }
+    // Step 1: Calculate indegree
+    for (int i = 0; i < V; i++) {
+        for (int neigh : adj[i]) {
+            indegree[neigh]++;
         }
-
-        // Step 2: Queue for nodes with indegree 0
-        queue<int> q;
-        for (int i = 0; i < V; i++) {
-            if (indegree[i] == 0) {
-                q.push(i);
-            }
-        }
-
-        vector<int> topo;
-
-        // Step 3: Process queue
-        while (!q.empty()) {
-            int node = q.front();
-            q.pop();
-            topo.push_back(node);
-
-            for (int neigh : adj[node]) {
-                indegree[neigh]--;
-                if (indegree[neigh] == 0) {
-                    q.push(neigh);
-                }
-            }
-        }
-
-        return topo;
     }
+
+    // Step 2: Queue for nodes with indegree 0
+    queue<int> q;
+    for (int i = 0; i < V; i++) {
+        if (indegree[i] == 0) {
+            q.push(i);
+        }
+    }
+
+    vector<int> topo;
+
+    // Step 3: Process queue
+    while (!q.empty()) {
+        int node = q.front();
+        q.pop();
+        topo.push_back(node);
+
+        for (int neigh : adj[node]) {
+            indegree[neigh]--;
+            if (indegree[neigh] == 0) {
+                q.push(neigh);
+            }
+        }
+    }
+
+    // Step 4: Check for cycle
+    if ((int)topo.size() != V) {
+        cout << "Cycle detected! No valid topological order." << endl;
+        return {};
+    }
+
+    return topo;
+    }
+
 };
 
 int main() {
@@ -79,12 +86,17 @@ int main() {
     vector<int> adj[V];
 
     // Directed edges
-    adj[5].push_back(0);
-    adj[5].push_back(2);
-    adj[4].push_back(0);
-    adj[4].push_back(1);
+    // Directed edges
+    // adj[0].push_back(5);
+    // adj[5].push_back(2);
+    // adj[4].push_back(0);
+    // adj[1].push_back(4);
+    // adj[2].push_back(3);
+    // adj[3].push_back(1);
+    adj[1].push_back(2);
     adj[2].push_back(3);
     adj[3].push_back(1);
+
 
     Solution obj;
 
@@ -120,3 +132,17 @@ BFS (Kahn's Algorithm):
     Space Complexity: O(V)
         - indegree array + queue + output
 
+
+
+/**
+* 
+* 
+dfsHelper(0)
+├── dfsHelper(2)
+│   └── dfsHelper(1) → push(1)
+│   → push(2)
+├── dfsHelper(3)
+│   └── dfsHelper(1) (already visited, skip)
+│   → push(3)
+→ push(0)
+ */

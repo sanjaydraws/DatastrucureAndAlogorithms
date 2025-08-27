@@ -3,8 +3,7 @@
 
 
 class Solution {
-public:
-    
+public:    
 int firstMissingPositive(vector<int>& nums) {
     int n = nums.size();
     // Step 1: place numbers
