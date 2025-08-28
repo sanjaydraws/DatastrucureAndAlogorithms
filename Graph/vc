@@ -1,0 +1,67 @@
+#include <bits/stdc++.h>
+using namespace std;
+
+class Solution {
+public:
+    // ---------- BFS Approach (Kahn's Algorithm) ----------
+    vector<int> findOrder_BFS(int numCourses, vector<vector<int>>& prerequisites) {
+        vector<vector<int>> adj(numCourses);
+        vector<int> indeg(numCourses, 0);
+
+        // Build adjacency list and indegree array
+        for (auto &p : prerequisites) {
+            int a = p[0], b = p[1]; // b -> a
+            adj[b].push_back(a);
+            indeg[a]++;
+        }
+
+        queue<int> q;
+        for (int i = 0; i < numCourses; i++) {
+            if (indeg[i] == 0) q.push(i); // Push courses with no prerequisites
+        }
+
+        vector<int> order;
+        while (!q.empty()) {
+            int u = q.front(); q.pop();
+            order.push_back(u);
+            for (int v : adj[u]) {
+                if (--indeg[v] == 0) q.push(v);
+            }
+        }
+
+        if (order.size() == numCourses) return order;
+        return {}; // Cycle detected
+    }
+
+    // ---------- DFS Approach ----------
+    bool dfs(int u, vector<vector<int>>& adj, vector<int>& vis, vector<int>& order) {
+        vis[u] = 1; // Mark as visiting
+        for (int v : adj[u]) {
+            if (vis[v] == 1) return false; // Back edge → cycle
+            if (vis[v] == 0) {
+                if (!dfs(v, adj, vis, order)) return false;
+            }
+        }
+        vis[u] = 2; // Mark as visited
+        order.push_back(u); // Post-order
+        return true;
+    }
+
+    vector<int> findOrder_DFS(int numCourses, vector<vector<int>>& prerequisites) {
+        vector<vector<int>> adj(numCourses);
+        for (auto &p : prerequisites) {
+            int a = p[0], b = p[1]; // b -> a
+            adj[b].push_back(a);
+        }
+
+        vector<int> vis(numCourses, 0), order;
+        for (int i = 0; i < numCourses; i++) {
+            if (vis[i] == 0) {
+                if (!dfs(i, adj, vis, order)) return {}; // Cycle detected
+            }
+        }
+
+        reverse(order.begin(), order.end()); // Reverse post-order
+        return order;
+    }
+};
