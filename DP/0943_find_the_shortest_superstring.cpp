@@ -255,3 +255,70 @@ public:
 - Recursion depth: O(n)
 - So total: O(n * 2^n + n^2)
 */
+
+
+
+
+// Approach 4 : tabulization 
+class Solution4 {
+public:
+    int n;
+    vector<vector<int>> overlap;
+
+    int calcOverlap(const string &a, const string &b) {
+        int maxLen = min(a.size(), b.size());
+        for (int len = maxLen; len > 0; len--) {
+            if (a.substr(a.size() - len) == b.substr(0, len)) {
+                return len;
+            }
+        }
+        return 0;
+    }
+
+    string shortestSuperstring(vector<string>& words) {
+        n = words.size();
+        overlap.assign(n, vector<int>(n, 0));
+
+        // Precompute overlaps
+        for (int i = 0; i < n; i++) {
+            for (int j = 0; j < n; j++) {
+                if (i != j) overlap[i][j] = calcOverlap(words[i], words[j]);
+            }
+        }
+
+        int N = 1 << n;
+        vector<vector<string>> dp(N, vector<string>(n, string(1000, 'x')));
+
+        // Base case: single word subsets
+        for (int i = 0; i < n; i++) {
+            dp[1 << i][i] = words[i];
+        }
+
+        // Fill DP table
+        for (int mask = 1; mask < N; mask++) {
+            for (int j = 0; j < n; j++) {
+                if (!(mask & (1 << j))) continue; // j not in mask
+                int prevMask = mask ^ (1 << j);
+                if (prevMask == 0) continue;
+
+                for (int i = 0; i < n; i++) {
+                    if (!(prevMask & (1 << i))) continue; // i not in prevMask
+                    string candidate = dp[prevMask][i] + words[j].substr(overlap[i][j]);
+                    if (candidate.size() < dp[mask][j].size()) {
+                        dp[mask][j] = candidate;
+                    }
+                }
+            }
+        }
+
+        // Get best among all dp[fullMask][i]
+        int fullMask = N - 1;
+        string ans(1000, 'x');
+        for (int i = 0; i < n; i++) {
+            if (dp[fullMask][i].size() < ans.size()) {
+                ans = dp[fullMask][i];
+            }
+        }
+        return ans;
+    }
+};
