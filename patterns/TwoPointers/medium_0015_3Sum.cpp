@@ -10,6 +10,17 @@ public:
     // 3. Skip duplicates for both i, left, and right to avoid repeating triplets
     // 4. Collect unique triplets in result
     
+    /*
+Time Complexity:
+- Sorting: O(n log n)
+- Outer loop: O(n)
+- Inner two-pointer: O(n)
+Total = O(n^2)
+
+Space Complexity:
+- O(1) extra (ignoring result storage)
+*/
+
     vector<vector<int>> threeSum(vector<int>& nums) {
         int n = nums.size();
         vector<vector<int>> res;
@@ -55,13 +66,5 @@ public:
     }
 };
 
-/*
-Time Complexity:
-- Sorting: O(n log n)
-- Outer loop: O(n)
-- Inner two-pointer: O(n)
-Total = O(n^2)
 
-Space Complexity:
-- O(1) extra (ignoring result storage)
-*/
+
